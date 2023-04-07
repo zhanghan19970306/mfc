@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { default as chalk } from 'chalk'
-import { errorBoxen } from '../boxen.mjs'
+// import { errorBoxen } from '../boxen'
 
 const DOC_URL = 'https://framework.pages.zmcms.cn/spec/git/commitLint.html'
 
@@ -48,7 +48,8 @@ if (/Merge.+branch \'.+\'/.test(msg)) {
 
 // core lint
 if (!commitRE.test(msg)) {
-  errorBoxen(`本次commit message不符合规范！\n查看更多:${chalk.blue(DOC_URL)}`)
+  console.log(`本次commit message不符合规范！\n查看更多:${chalk.blue(DOC_URL)}`)
+  // errorBoxen(`本次commit message不符合规范！\n查看更多:${chalk.blue(DOC_URL)}`)
   process.exit(0)
 }
 
