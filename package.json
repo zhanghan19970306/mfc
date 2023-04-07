@@ -1,0 +1,46 @@
+{
+  "name": "mfc",
+  "version": "0.1.0",
+  "description": "this is description",
+  "main": "index.js",
+  "scripts": {},
+  "engines": {
+    "node": ">=18.15.0",
+    "pnpm": ">=6.35.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhanghan19970306/mfc.git"
+  },
+  "keywords": [
+    "mfc"
+  ],
+  "author": "zhanghan19970306",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhanghan19970306/mfc/issues"
+  },
+  "homepage": "https://github.com/zhanghan19970306/mfc#readme",
+  "lint-staged": {
+    "*.{js,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --write"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "prepare-commit-msg": "echo 'prepare-commit-msg'",
+    "commit-msg": "node ./scripts/gitHooks/commit-msg.mjs",
+    "post-merge": "echo 'post-merge'",
+    "pre-push": "echo 'pre-push'"
+  },
+  "devDependencies": {
+    "boxen": "^7.0.2",
+    "chalk": "^5.2.0",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.7",
+    "simple-git-hooks": "^2.8.1"
+  }
+}

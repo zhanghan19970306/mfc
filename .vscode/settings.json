@@ -1,0 +1,17 @@
+{
+  // 配合开启自动化修复
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // 应styleLint@1.0.0插件要求
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.validate": ["css", "scss", "vue", "html"],
+  // 启用或禁用在 VS Code 中重命名或移动文件时自动更新 import 语句的路径。
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always"
+}

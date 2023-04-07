@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "stylelint.vscode-stylelint",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "mgmcdermott.vscode-language-babel",
+    "vue.volar",
+    "usernamehw.errorlens"
+  ]
+}
