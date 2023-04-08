@@ -31,17 +31,20 @@
     ]
   },
   "simple-git-hooks": {
-    "pre-commit": "npx lint-staged",
-    "prepare-commit-msg": "echo 'prepare-commit-msg'",
-    "commit-msg": "node ./scripts/gitHooks/commit-msg.js --experimental-modules",
-    "post-merge": "echo 'post-merge'",
-    "pre-push": "echo 'pre-push'"
+    "pre-commit": "node ./scripts/gitHooks/pre-commit.js",
+    "prepare-commit-msg": "node ./scripts/gitHooks/prepare-commit-msg.js",
+    "commit-msg": "node ./scripts/gitHooks/commit-msg.js",
+    "post-merge": "node ./scripts/gitHooks/post-merge.js"
   },
   "devDependencies": {
+    "@clack/prompts": "^0.6.3",
+    "@ls-lint/ls-lint": "^1.11.2",
     "boxen": "^7.0.2",
     "chalk": "^5.2.0",
+    "execa": "^7.1.1",
     "lint-staged": "^13.2.0",
     "prettier": "^2.8.7",
+    "semver": "^7.3.8",
     "simple-git-hooks": "^2.8.1"
   }
 }
