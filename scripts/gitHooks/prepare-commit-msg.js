@@ -4,8 +4,8 @@ import { $ } from 'execa'
 const isMerging = existsSync('.git/MERGE_MSG') && existsSync('.git/MERGE_HEAD')
 if (!isMerging) process.exit(0)
 
-const currentBranch = await $`git rev-parse --abbrev-ref HEAD`
-if (currentBranch !== 'master') process.exit(0)
+const { stdout: currentBranch } = await $`git rev-parse --abbrev-ref HEAD`
+if (currentBranch.trim() !== 'master') process.exit(0)
 
 const mergeMsg = readFileSync('.git/MERGE_MSG', 'utf-8').trim()
 const hasConflicts = /\n# Conflicts:\n/.test(mergeMsg)
@@ -15,8 +15,8 @@ if (hasConflicts) {
 }
 
 const mergeHeadSha = readFileSync('.git/MERGE_HEAD', 'utf-8').trim()
-const diffCountText = await $`git rev-list --count master..${mergeHeadSha}`
-const diffCount = Number(diffCountText)
+const { stdout: diffCountText } = await $`git rev-list --count master..${mergeHeadSha}`
+const diffCount = Number(diffCountText.trim())
 if (diffCount > 1) {
   console.log(`此次合并含${diffCount}条Commit差异, 不符合规范！`)
   process.exit(1)

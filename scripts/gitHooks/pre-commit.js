@@ -15,10 +15,16 @@ const s = spinner()
   }
 }
 
+s.start('开始进行prettier检测')
+s.stop('prettier检测完毕')
+
 s.start('开始进行eslint检测')
 s.stop('eslint检测完毕')
 
 s.start('开始进行stylelint检测')
 s.stop('stylelint检测完毕')
+
+s.start('开始进行TS-type检测')
+s.stop('TS-type检测完毕')
 
 outro('代码检测完成')
