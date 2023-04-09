@@ -1,0 +1,17 @@
+ls:
+  .jpg: kebab-case
+  .png: kebab-case
+  .jpeg: kebab-case
+  .svg: kebab-case
+  .gif: kebab-case
+  .webp: kebab-case
+  .avif: kebab-case
+
+  scripts:
+    .mjs: kebabcase
+    .js: kebabcase
+
+ignore:
+  - .git
+  - node_modules
+  - dist
