@@ -34,7 +34,8 @@
     "pre-commit": "node ./scripts/gitHooks/pre-commit.js",
     "prepare-commit-msg": "node ./scripts/gitHooks/prepare-commit-msg.js",
     "commit-msg": "node ./scripts/gitHooks/commit-msg.js",
-    "post-merge": "node ./scripts/gitHooks/post-merge.js"
+    "post-merge": "node ./scripts/gitHooks/post-merge.js",
+    "post-checkout": "node ./scripts/gitHooks/post-checkout.js"
   },
   "devDependencies": {
     "@clack/prompts": "^0.6.3",
