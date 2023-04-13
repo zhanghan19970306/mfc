@@ -1,6 +1,8 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { $ } from 'execa'
 
+console.log('prepare-commit-msg')
+
 const isMerging = existsSync('.git/MERGE_MSG') && existsSync('.git/MERGE_HEAD')
 if (!isMerging) process.exit(0)
 

@@ -2,6 +2,8 @@ import { inc } from 'semver'
 import { $ } from 'execa'
 import { readFileSync, existsSync } from 'node:fs'
 
+console.log('post-merge')
+
 const { stdout: currentBranch } = await $`git rev-parse --abbrev-ref HEAD`
 if (currentBranch.trim() !== 'master') process.exit(0)
 
