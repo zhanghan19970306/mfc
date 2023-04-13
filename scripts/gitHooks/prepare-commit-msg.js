@@ -21,7 +21,7 @@ const mergeHeadSha = readFileSync('.git/MERGE_HEAD', 'utf-8').trim()
 const { stdout: diffCountText } = await $`git rev-list --count master..${mergeHeadSha}`
 const diffCount = Number(diffCountText.trim())
 
-log(diffCount)
+log(diffCountText)
 if (diffCount > 1) {
   console.log(`此次合并含${diffCount}条Commit差异, 不符合规范！`)
   process.exit(1)
