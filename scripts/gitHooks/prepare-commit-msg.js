@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { $ } from 'execa'
+import { log } from 'node:console'
 
 console.log('prepare-commit-msg')
 
@@ -19,6 +20,8 @@ if (hasConflicts) {
 const mergeHeadSha = readFileSync('.git/MERGE_HEAD', 'utf-8').trim()
 const { stdout: diffCountText } = await $`git rev-list --count master..${mergeHeadSha}`
 const diffCount = Number(diffCountText.trim())
+
+log(diffCount)
 if (diffCount > 1) {
   console.log(`此次合并含${diffCount}条Commit差异, 不符合规范！`)
   process.exit(1)
