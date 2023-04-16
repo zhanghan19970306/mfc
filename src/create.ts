@@ -1,0 +1,46 @@
+import { Command } from 'commander'
+import { intro, outro, spinner, isCancel, cancel, text, log, select } from '@clack/prompts'
+const s = spinner()
+
+export const setupCreate = (program: Command) => {
+  program
+    .command(`create [name]`)
+    .description('创建一个项目')
+    .option('-r, --force', '强制创建')
+    .action(async (initialName?: string) => {
+      intro('开始创建')
+
+      const name = await text({
+        message: '项目名称',
+        placeholder: '好名字是一个美好的开始',
+        initialValue: initialName,
+        validate(value) {
+          //   if (!/^[a-zA-Z0-9]*$/g.test(value)) {
+          //     return '项目名称不符合规范'
+          //   }
+        },
+      })
+
+      if (isCancel(name)) {
+        cancel('操作取消')
+        process.exit(0)
+      }
+
+      const type = await select({
+        message: '选择项目的类型',
+        options: [
+          { value: 'vue2-web', label: 'vue2-web', hint: '这里是hite' },
+          { value: 'vue3-web', label: 'vue3-web' },
+          { value: 'vue3-h5', label: 'vue3-h5' },
+          { value: 'Lib', label: 'Lib' },
+        ],
+      })
+
+      if (isCancel(type)) {
+        cancel('操作取消')
+        process.exit(0)
+      }
+
+      outro('创建完成')
+    })
+}
