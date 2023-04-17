@@ -1,6 +1,7 @@
-import { promisify } from 'node:util'
 import { exec } from 'node:child_process'
-import { intro, outro, spinner, isCancel, cancel, text, log } from '@clack/prompts'
+import { promisify } from 'node:util'
+
+import { intro, log, outro, spinner } from '@clack/prompts'
 
 const $ = promisify(exec)
 

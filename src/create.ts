@@ -1,6 +1,6 @@
+import { cancel, intro, isCancel, outro, select, text } from '@clack/prompts'
 import { Command } from 'commander'
-import { intro, outro, spinner, isCancel, cancel, text, log, select } from '@clack/prompts'
-const s = spinner()
+// const s = spinner()
 
 export const setupCreate = (program: Command) => {
   program
@@ -15,9 +15,9 @@ export const setupCreate = (program: Command) => {
         placeholder: '好名字是一个美好的开始',
         initialValue: initialName,
         validate(value) {
-          //   if (!/^[a-zA-Z0-9]*$/g.test(value)) {
-          //     return '项目名称不符合规范'
-          //   }
+          if (!/^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/g.test(value)) {
+            return '项目名称不符合规范'
+          }
         },
       })
 

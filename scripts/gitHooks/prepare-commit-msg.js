@@ -1,6 +1,6 @@
+import { exec } from 'node:child_process'
 import { existsSync, readFileSync } from 'node:fs'
 import { promisify } from 'node:util'
-import { exec } from 'node:child_process'
 
 const $ = promisify(exec)
 

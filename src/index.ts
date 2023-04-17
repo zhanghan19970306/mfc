@@ -1,8 +1,9 @@
 import { Command } from 'commander'
-import { version } from '../package.json'
 
+import { version } from '../package.json'
 import { setupCreate } from './create'
 import { setupFormat } from './format'
+import { setupMerrageCommit } from './merge-commit'
 
 // 实例化
 const program = new Command('Pandora')
@@ -17,6 +18,7 @@ program.helpOption('-h, --help', '查看帮助')
 // 初始化创建字命令
 setupCreate(program)
 setupFormat(program)
+setupMerrageCommit(program)
 
 // 最后进行解析参数
 program.parse(process.argv)

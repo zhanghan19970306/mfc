@@ -1,6 +1,7 @@
-import { inc } from 'semver'
-import { promisify } from 'node:util'
 import { exec } from 'node:child_process'
+import { promisify } from 'node:util'
+
+import { inc } from 'semver'
 
 const $ = promisify(exec)
 

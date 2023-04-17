@@ -5,8 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx src/index.ts create pandora-project-example",
-    "format": "tsx src/index.ts format"
+    "create": "tsx src/index.ts create pandora-project-example",
+    "format": "tsx src/index.ts format",
+    "merge-commit": "tsx src/index.ts merge-commit"
   },
   "bin": {
     "pan": "dist/index.js"
@@ -41,22 +42,48 @@
   },
   "devDependencies": {
     "@clack/prompts": "^0.6.3",
-    "@esbuild/darwin-arm64": "^0.17.16",
-    "@esbuild/darwin-x64": "^0.17.16",
+    "@esbuild/darwin-arm64": "^0.17.17",
+    "@esbuild/darwin-x64": "^0.17.17",
     "@ls-lint/ls-lint": "^1.11.2",
     "@types/node": "^18.15.11",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
+    "@vue/eslint-config-prettier": "^7.1.0",
+    "boxen": "^7.0.2",
+    "chalk": "^5.2.0",
     "eslint": "^8.38.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-cypress": "^2.13.2",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-vue": "^9.11.0",
     "lint-staged": "^13.2.1",
+    "postcss": "^8.4.22",
+    "postcss-html": "^1.5.0",
     "prettier": "^2.8.7",
     "semver": "^7.4.0",
     "simple-git-hooks": "^2.8.1",
+    "stylelint": "^15.5.0",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-recommended-scss": "^10.0.0",
+    "stylelint-config-recommended-vue": "^1.4.0",
+    "stylelint-order": "^6.0.3",
+    "stylelint-scss": "^4.6.0",
     "tsx": "^3.12.6",
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "commander": "^10.0.0"
+    "commander": "^10.0.1"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "stylelint-config-prettier"
+      ]
+    }
   }
 }
