@@ -1,10 +1,15 @@
 import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
 
-import { intro, log, outro } from '@clack/prompts'
+import { intro, log, outro, spinner } from '@clack/prompts'
+import boxen from 'boxen'
 import chalk from 'chalk'
 
-const promisifyExec = promisify(exec)
+const boxenBaseOptions = {
+  margin: { top: 1, bottom: 1 },
+  padding: { left: 1, right: 1 },
+  borderStyle: 'double',
+} as const
 
 const pipe = (...funs: ((...arg: any[]) => unknown)[]) => {
   if (funs.length === 0) return (...arg: any[]) => arg
@@ -15,6 +20,10 @@ const pipe = (...funs: ((...arg: any[]) => unknown)[]) => {
         b(a(...args))
   )
 }
+
+const promisifyExec = promisify(exec)
+
+export const s = spinner()
 
 export const $ = (command: string) => promisifyExec(command).then(({ stdout }) => stdout.trim())
 
@@ -30,3 +39,15 @@ export const runAsyncScript = async (fn: (...arg: unknown[]) => Promise<void>) =
 export const introBanner = pipe(chalk.bold, chalk.bgBlueBright, intro)
 
 export const outroBanner = pipe(chalk.bold, chalk.bgGreenBright, outro)
+
+export const successBox = (text: string) =>
+  console.log(boxen(text, { title: `success`, borderColor: 'green', ...boxenBaseOptions }))
+
+export const infoBox = (text: string) =>
+  console.log(boxen(text, { title: `info`, borderColor: 'blue', ...boxenBaseOptions }))
+
+export const warnBox = (text: string) =>
+  console.log(boxen(text, { title: `warning`, borderColor: 'yellow', ...boxenBaseOptions }))
+
+export const errorBox = (text: string) =>
+  console.log(boxen(text, { title: `error`, borderColor: 'red', ...boxenBaseOptions }))

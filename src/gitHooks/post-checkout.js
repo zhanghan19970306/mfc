@@ -1,11 +1,11 @@
-import { exec } from 'node:child_process'
-import { promisify } from 'node:util'
+import { $ } from '../shared'
 
-const $ = promisify(exec)
-
-const currentBranch = await $('git rev-parse --abbrev-ref HEAD').then(({ stdout }) => stdout.trim())
+const currentBranch = await $('git rev-parse --abbrev-ref HEAD')
 const fixedBranchs = ['master', 'pre', 'release', 'beta', 'test', 'dev']
-if (fixedBranchs.includes(currentBranch)) process.exit(0)
+if (fixedBranchs.includes(currentBranch)) {
+  process.exit(0)
+}
+
 const branchNameReg = /^(feature|hotfix)\/(19|20)\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])-(\d+|\w+(-\w+)?)$/g
 if (!branchNameReg.test(currentBranch)) {
   console.log(

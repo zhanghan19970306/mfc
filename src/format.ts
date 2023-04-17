@@ -1,9 +1,6 @@
-import { spinner } from '@clack/prompts'
 import { Command } from 'commander'
 
-import { $, introBanner, outroBanner, runAsyncScript } from './shared'
-
-const s = spinner()
+import { $, introBanner, outroBanner, runAsyncScript, s } from './shared'
 
 export const setupFormat = (program: Command) => {
   program
