@@ -46,6 +46,12 @@ module.exports = {
      */
     'simple-import-sort/exports': 'error',
 
+    /**
+     * 在任何情况下都应该使用命名导出
+     * @desc 当一个模块只有一个导出时，首选使用默认导出而不是命名导出。
+     */
+    'import/prefer-default-export': 'off',
+
     'import/no-unresolved': ['error', { ignore: ['^node:'] }],
 
     '@typescript-eslint/no-explicit-any': ['error', { ignoreRestArgs: true }],

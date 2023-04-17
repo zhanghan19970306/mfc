@@ -15,7 +15,7 @@ program.version(version, '-v, --version', 'CLI的当前版本')
 // 覆盖默认的help描述
 program.helpOption('-h, --help', '查看帮助')
 
-// 初始化创建字命令
+// 创建子命令
 setupCreate(program)
 setupFormat(program)
 setupMerrageCommit(program)
