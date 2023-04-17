@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx src/index.ts create pandora-project-example"
+    "dev": "tsx src/index.ts create pandora-project-example",
+    "format": "tsx src/index.ts format"
   },
   "bin": {
     "pan": "dist/index.js"
@@ -44,11 +45,16 @@
     "@esbuild/darwin-x64": "^0.17.16",
     "@ls-lint/ls-lint": "^1.11.2",
     "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-vue": "^9.11.0",
     "lint-staged": "^13.2.1",
     "prettier": "^2.8.7",
     "semver": "^7.4.0",
     "simple-git-hooks": "^2.8.1",
-    "tsx": "^3.12.6"
+    "tsx": "^3.12.6",
+    "typescript": "^5.0.4"
   },
   "dependencies": {
     "commander": "^10.0.0"

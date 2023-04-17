@@ -29,10 +29,10 @@ export const setupCreate = (program: Command) => {
       const type = await select({
         message: '选择项目的类型',
         options: [
-          { value: 'vue2-web', label: 'vue2-web', hint: '这里是hite' },
-          { value: 'vue3-web', label: 'vue3-web' },
-          { value: 'vue3-h5', label: 'vue3-h5' },
-          { value: 'Lib', label: 'Lib' },
+          { value: 'vue2-web', label: 'vue2-web', hint: '这里是hint' },
+          { value: 'vue3-web', label: 'vue3-web', hint: '这里是hint' },
+          { value: 'vue3-h5', label: 'vue3-h5', hint: '这里是hint' },
+          { value: 'Lib', label: 'Lib', hint: '这里是hint' },
         ],
       })
 
