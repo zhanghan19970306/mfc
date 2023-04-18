@@ -26,20 +26,12 @@
     "url": "https://github.com/zhanghan19970306/mfc/issues"
   },
   "homepage": "https://github.com/zhanghan19970306/mfc#readme",
-  "lint-staged": {
-    "*.{js,json}": [
-      "prettier --write"
-    ],
-    "*.ts?(x)": [
-      "prettier --write"
-    ]
-  },
   "simple-git-hooks": {
-    "pre-commit": "node ./src/gitHooks/pre-commit.js",
-    "prepare-commit-msg": "node ./src/gitHooks/prepare-commit-msg.js",
-    "commit-msg": "node ./src/gitHooks/commit-msg.js",
-    "post-merge": "node ./src/gitHooks/post-merge.js",
-    "post-checkout": "node ./src/gitHooks/post-checkout.js"
+    "pre-commit": "pnpm exec tsx src/index.ts hook pre-commit",
+    "prepare-commit-msg": "pnpm exec tsx src/index.ts hook prepare-commit-msg",
+    "commit-msg": "pnpm exec tsx src/index.ts hook commit-msg",
+    "post-merge": "pnpm exec tsx src/index.ts hook post-merge",
+    "post-checkout": "pnpm exec tsx src/index.ts hook post-checkout"
   },
   "devDependencies": {
     "@clack/prompts": "^0.6.3",

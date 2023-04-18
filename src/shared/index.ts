@@ -5,6 +5,8 @@ import { intro, log, outro, spinner } from '@clack/prompts'
 import boxen from 'boxen'
 import chalk from 'chalk'
 
+export * from './config'
+
 const boxenBaseOptions = {
   margin: { top: 1, bottom: 1 },
   padding: { left: 1, right: 1 },
@@ -31,7 +33,7 @@ export const runAsyncScript = async (fn: (...arg: unknown[]) => Promise<void>) =
   try {
     await fn()
   } catch (error) {
-    log.error((error as { stdout: string }).stdout || (error as Error).message)
+    log.error((error as { stdout: string }).stdout || (error as { stderr: string }).stderr || (error as Error).message)
     process.exit(1)
   }
 }

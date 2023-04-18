@@ -3,6 +3,7 @@ import { Command } from 'commander'
 import { version } from '../package.json'
 import { setupCreate } from './create'
 import { setupFormat } from './format'
+import { setupHook } from './hook'
 import { setupRelease } from './release'
 import { setupSquash } from './squash'
 
@@ -21,6 +22,7 @@ setupCreate(program)
 setupFormat(program)
 setupSquash(program)
 setupRelease(program)
+setupHook(program)
 
 // 最后进行解析参数
 program.parse(process.argv)
