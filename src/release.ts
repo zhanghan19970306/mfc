@@ -1,5 +1,3 @@
-import { execSync } from 'node:child_process'
-
 import { cancel, confirm, isCancel, log, note, select } from '@clack/prompts'
 import { Command } from 'commander'
 import { inc } from 'semver'
@@ -32,7 +30,7 @@ export const setupRelease = (program: Command) => {
         process.exit(1)
       }
 
-      // await $(`git fetch origin ${branch}`)
+      await $(`git fetch origin ${branch}`)
       const diffContent = await $(`git log ${branch}..origin/${branch}`)
       if (diffContent !== '') {
         log.error(`远程${branch}分支存在新的commit，请先拉取`)
@@ -120,9 +118,9 @@ export const setupRelease = (program: Command) => {
       await $(`git commit -m "release: v${version}" && git push`)
       s.stop('升级version并推送完毕')
 
-      s.start('生成并推送Tag')
+      s.start('生成Tag并推送')
       await $(`git tag v${version} && git push origin v${version}`)
-      s.stop('生成并推送Tag完毕')
+      s.stop('生成Tag并推送完毕')
 
       // introBanner()
       outroBanner('release 任务结束')
