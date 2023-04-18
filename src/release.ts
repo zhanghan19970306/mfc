@@ -113,9 +113,10 @@ export const setupRelease = (program: Command) => {
         // TODO: 接入飞书
       }
 
-      s.start('升级version')
-      await $(`npm version v${version} --no-git-tag-version && git add -A && git commit -m "release: v${version}"`)
-      s.stop('升级version完毕')
+      s.start('升级version并推送')
+      await $(`npm version v${version} --no-git-tag-version && git add -A"`)
+      await $(`git commit -m "release: v${version} && git push`)
+      s.stop('升级version并推送完毕')
 
       s.start('生成并推送Tag')
       await $(`git tag v${version} && git push origin v${version}`)
