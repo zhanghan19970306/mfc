@@ -1,3 +1,5 @@
+import { execSync } from 'node:child_process'
+
 import { cancel, confirm, isCancel, log, note, select } from '@clack/prompts'
 import { Command } from 'commander'
 import { inc } from 'semver'
@@ -30,7 +32,7 @@ export const setupRelease = (program: Command) => {
         process.exit(1)
       }
 
-      await $(`git fetch origin ${branch}`)
+      // await $(`git fetch origin ${branch}`)
       const diffContent = await $(`git log ${branch}..origin/${branch}`)
       if (diffContent !== '') {
         log.error(`远程${branch}分支存在新的commit，请先拉取`)
@@ -114,8 +116,9 @@ export const setupRelease = (program: Command) => {
       }
 
       s.start('升级version并推送')
-      await $(`npm version v${version} --no-git-tag-version && git add -A"`)
-      await $(`git commit -m "release: v${version} && git push`)
+      execSync(`npm version v${version} --no-git-tag-version`, { encoding: 'utf-8' })
+      execSync(`git add -A`, { encoding: 'utf-8' })
+      execSync(`git commit -m "release: v${version}" && git push`, { encoding: 'utf-8' })
       s.stop('升级version并推送完毕')
 
       s.start('生成并推送Tag')
