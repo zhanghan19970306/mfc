@@ -116,9 +116,8 @@ export const setupRelease = (program: Command) => {
       }
 
       s.start('升级version并推送')
-      execSync(`npm version v${version} --no-git-tag-version`, { encoding: 'utf-8' })
-      execSync(`git add -A`, { encoding: 'utf-8' })
-      execSync(`git commit -m "release: v${version}" && git push`, { encoding: 'utf-8' })
+      await $(`npm version v${version} --no-git-tag-version && git add -A`)
+      await $(`git commit -m "release: v${version}" && git push`)
       s.stop('升级version并推送完毕')
 
       s.start('生成并推送Tag')
