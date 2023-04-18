@@ -3,6 +3,7 @@ import { Command } from 'commander'
 import { version } from '../package.json'
 import { setupCreate } from './create'
 import { setupFormat } from './format'
+import { setupRelease } from './release'
 import { setupSquash } from './squash'
 
 // 实例化
@@ -19,6 +20,7 @@ program.helpOption('-h, --help', '查看帮助')
 setupCreate(program)
 setupFormat(program)
 setupSquash(program)
+setupRelease(program)
 
 // 最后进行解析参数
 program.parse(process.argv)
