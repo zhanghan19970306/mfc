@@ -37,7 +37,7 @@ const msgPath = resolve('.git/COMMIT_EDITMSG')
 const msg = readFileSync(msgPath, 'utf-8').replace(/\n#.*/g, '').trim()
 
 // is git merge create info
-if (/Merge.+branch \'.+\'/.test(msg)) {
+if (/Merge.+branch '.+'/.test(msg)) {
   writeFileSync(msgPath, `🔀 ${msg.replace('Merge', 'merge:')}`)
   process.exit(0)
 }

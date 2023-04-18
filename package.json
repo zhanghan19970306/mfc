@@ -4,10 +4,14 @@
   "description": "this is description",
   "main": "index.js",
   "type": "module",
-  "scripts": {},
-  "engines": {
-    "node": ">=18.15.0",
-    "pnpm": ">=6.35.1"
+  "scripts": {
+    "create": "tsx src/index.ts create pandora-project-example",
+    "format": "tsx src/index.ts format",
+    "squash": "tsx src/index.ts squash",
+    "release": "tsx src/index.ts release"
+  },
+  "bin": {
+    "pan": "dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -31,21 +35,56 @@
     ]
   },
   "simple-git-hooks": {
-    "pre-commit": "node ./scripts/gitHooks/pre-commit.js",
-    "prepare-commit-msg": "node ./scripts/gitHooks/prepare-commit-msg.js",
-    "commit-msg": "node ./scripts/gitHooks/commit-msg.js",
-    "post-merge": "node ./scripts/gitHooks/post-merge.js",
-    "post-checkout": "node ./scripts/gitHooks/post-checkout.js"
+    "pre-commit": "node ./src/gitHooks/pre-commit.js",
+    "prepare-commit-msg": "node ./src/gitHooks/prepare-commit-msg.js",
+    "commit-msg": "node ./src/gitHooks/commit-msg.js",
+    "post-merge": "node ./src/gitHooks/post-merge.js",
+    "post-checkout": "node ./src/gitHooks/post-checkout.js"
   },
   "devDependencies": {
     "@clack/prompts": "^0.6.3",
+    "@esbuild/darwin-arm64": "^0.17.17",
+    "@esbuild/darwin-x64": "^0.17.17",
     "@ls-lint/ls-lint": "^1.11.2",
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "@vue/eslint-config-prettier": "^7.1.0",
     "boxen": "^7.0.2",
     "chalk": "^5.2.0",
-    "execa": "^7.1.1",
-    "lint-staged": "^13.2.0",
+    "eslint": "^8.38.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-cypress": "^2.13.2",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-vue": "^9.11.0",
+    "lint-staged": "^13.2.1",
+    "postcss": "^8.4.22",
+    "postcss-html": "^1.5.0",
     "prettier": "^2.8.7",
-    "semver": "^7.3.8",
-    "simple-git-hooks": "^2.8.1"
+    "semver": "^7.4.0",
+    "simple-git-hooks": "^2.8.1",
+    "stylelint": "^15.5.0",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-recommended-scss": "^10.0.0",
+    "stylelint-config-recommended-vue": "^1.4.0",
+    "stylelint-order": "^6.0.3",
+    "stylelint-scss": "^4.6.0",
+    "tsx": "^3.12.6",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "commander": "^10.0.1"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "stylelint-config-prettier"
+      ]
+    }
   }
 }

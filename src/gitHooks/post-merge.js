@@ -1,6 +1,7 @@
-import { inc } from 'semver'
-import { promisify } from 'node:util'
 import { exec } from 'node:child_process'
+import { promisify } from 'node:util'
+
+import { inc } from 'semver'
 
 const $ = promisify(exec)
 
@@ -18,14 +19,12 @@ const diffCount = Number(diffCountText.trim())
 if (diffCount > 1) {
   console.log(
     `${[
-      '\x1B[31m\x1B[39m\n' +
-        '\x1B[31m╔ error ════════════════════════════════════════════════════════════════════════════════════════════╗\x1B[39m\n' +
-        '\x1B[31m║\x1B[39m 此次合并含' +
-        diffCount +
-        '条Commit差异, 不符合规范！                                                             \x1B[31m║\x1B[39m\n' +
-        '\x1B[31m║\x1B[39m 查看更多:\x1B[34mhttps://qimaitech.feishu.cn/wiki/wikcnSOiZCoGVJ2AQ31c48MCaIe#BmKOd2Q8eow08sxo7EvcacFBnaf\x1B[39m \x1B[31m║\x1B[39m\n' +
-        '\x1B[31m╚═══════════════════════════════════════════════════════════════════════════════════════════════════╝\x1B[39m\n' +
-        '\x1B[31m\x1B[39m',
+      `\x1B[31m\x1B[39m\n` +
+        `\x1B[31m╔ error ════════════════════════════════════════════════════════════════════════════════════════════╗\x1B[39m\n` +
+        `\x1B[31m║\x1B[39m 此次合并含${diffCount}条Commit差异, 不符合规范！                                                             \x1B[31m║\x1B[39m\n` +
+        `\x1B[31m║\x1B[39m 查看更多:\x1B[34mhttps://qimaitech.feishu.cn/wiki/wikcnSOiZCoGVJ2AQ31c48MCaIe#BmKOd2Q8eow08sxo7EvcacFBnaf\x1B[39m \x1B[31m║\x1B[39m\n` +
+        `\x1B[31m╚═══════════════════════════════════════════════════════════════════════════════════════════════════╝\x1B[39m\n` +
+        `\x1B[31m\x1B[39m`,
     ]}`
   )
   await $(`git fetch origin master`)
@@ -45,7 +44,7 @@ if (diffCount > 1) {
           '\x1B[34m\x1B[39m',
       ]}`
     )
-  } catch (error) {
-    console.log(error)
+  } catch {
+    //
   }
 }
