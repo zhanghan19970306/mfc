@@ -42,6 +42,8 @@ export const introBanner = pipe(addSpace, chalk.bold, chalk.bgBlueBright, intro)
 
 export const outroBanner = pipe(addSpace, chalk.bold, chalk.bgGreenBright, outro)
 
+export const linkStyle = chalk.blue
+
 export const successBox = (text: string) =>
   console.log(boxen(text, { title: `success`, borderColor: 'green', ...boxenBaseOptions }))
 
