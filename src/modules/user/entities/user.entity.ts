@@ -1,12 +1,14 @@
 import { Entity, Column } from 'typeorm';
-import { BaseEntity } from '@/common/entity';
-import { SexEnum } from '@/common/enums';
+import { BaseEntity } from '@/shared/entity';
+import { SexEnum } from '@/shared/enums';
+import { Exclude } from 'class-transformer';
 
 @Entity('sys_user')
 export class User extends BaseEntity {
   @Column({ comment: '用户账号', default: '' })
   username: string;
 
+  @Exclude()
   @Column({ comment: '密码', default: '' })
   password: string;
 

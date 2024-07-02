@@ -13,10 +13,8 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    // 创建新实体
     const user = this.userRepository.create(createUserDto);
 
-    // 用户的手机号 就是登录账号
     user.username = user.mobile;
 
     /**
@@ -29,25 +27,35 @@ export class UserService {
       user.nickname = `游客${countStr.padStart(9 - countStr.length, '0')}`;
     }
 
-    // 入库
     const userEntity = await this.userRepository.save(user);
 
     return userEntity;
   }
 
   findAll() {
-    return `This action returns all user`;
+    return this.userRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(id: string) {
+    return this.userRepository.findOneByOrFail({ id });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const user = await this.userRepository.findOneByOrFail({ id });
+    const updateduser = this.userRepository.merge(user, updateUserDto);
+    return this.userRepository.save(updateduser);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: string) {
+    // 根据id获取到实体
+    const user = await this.userRepository.findOneByOrFail({ id });
+    return this.userRepository.remove(user);
+  }
+
+  async findPagination(params: any) {
+    this.userRepository.findAndCount({
+      take: params.pageSize,
+      skip: (params.pageNo - 1) * params.pageSize,
+    });
   }
 }

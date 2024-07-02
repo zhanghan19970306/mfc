@@ -1,0 +1,64 @@
+@moduleUrl = http://localhost:3000/api
+@moduleName = user
+@prefix = {{moduleUrl}}/{{moduleName}}
+
+
+### 创建用户 - 途径：管理员新增 ##################################################################################################################
+# @name createInfo
+POST {{prefix}}
+Content-Type: application/json
+
+{
+    "email": "2957170000@qq.com", 
+    "password": "e10adc3949ba59abbe56e057f20f883e",
+    "nickname": "爱生活.涵",
+    "mobile": "15056076745",
+    "sex": 2,
+    "disabled": false
+}
+
+
+### 更新用户 - 途径：管理员更新 ##################################################################################################################
+@userId = {{createInfo.response.body.$.data.id}}
+
+PUT {{prefix}}/{{userId}}
+Content-Type: application/json
+
+{
+    "userName": "张涵",
+    "email": "2957172141@qq.com", 
+    "password": "e10adc3949ba59abbe56e057f20f883e",
+    "mobile": "18395596048",
+    "isEnable": true
+}
+
+
+### 获取用户信息 ##################################################################################################################
+@userId = {{createInfo.response.body.$.data.id}}
+
+GET {{prefix}}/{{userId}}
+
+
+### 删除用户信息 ##################################################################################################################
+@userId = {{createInfo.response.body.$.data.id}}
+
+DELETE {{prefix}}/{{userId}}
+
+### 绑定角色  ##################################################################################################################
+@userId = {{createInfo.response.body.$.data.id}}
+
+PATCH {{prefix}}/relationRoles/{{userId}}
+Content-Type: application/json
+
+{
+    "roleIds": ["bbf9d142-125b-45b0-b042-7208f67daee7"]
+}
+
+### 获取用户列表 ##################################################################################################################
+GET {{prefix}}
+
+
+
+
+
+

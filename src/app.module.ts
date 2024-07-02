@@ -1,7 +1,6 @@
-import { Module, OnModuleInit } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { UserModule } from './modules/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
 
 @Module({
   imports: [
@@ -20,10 +19,4 @@ import { DataSource } from 'typeorm';
     UserModule,
   ],
 })
-export class AppModule implements OnModuleInit {
-  constructor(private dataSource: DataSource) {}
-
-  onModuleInit() {
-    console.log('OnModuleInit');
-  }
-}
+export class AppModule {}

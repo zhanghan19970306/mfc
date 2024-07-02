@@ -1,3 +1,4 @@
+/** 性别 */
 export const enum SexEnum {
   /** 未知 */
   Unknown = 0,
