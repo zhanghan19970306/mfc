@@ -1,0 +1,43 @@
+@moduleUrl = http://localhost:3000/api
+@moduleName = auth
+@prefix = {{moduleUrl}}/{{moduleName}}
+
+
+
+### 登录 ##################################################################################################################
+# @name authInfo
+POST {{prefix}}/login
+Content-Type: application/json
+
+{
+    "username": "18395596048", 
+    "password": "e10adc3949ba59abbe56e057f20f883e"
+}
+
+### 获取用户信息token中的payload信息 ##########################################################################################################
+
+GET {{prefix}}/profile
+Content-Type: application/json
+Authorization: Bearer {{authInfo.response.body.$.data.accessToken}}
+
+### 刷新token ##########################################################################################################
+# @name newTokenInfo
+POST {{prefix}}/refreshToken
+Content-Type: application/json
+Authorization: Bearer {{authInfo.response.body.$.data.accessToken}}
+
+{
+    "refreshToken": "{{authInfo.response.body.$.data.refreshToken}}"
+}
+
+### 使用新的accessToken来请求
+GET {{prefix}}/profile
+Content-Type: application/json
+Authorization: Bearer {{newTokenInfo.response.body.$.data.accessToken}}
+
+
+
+
+
+
+
