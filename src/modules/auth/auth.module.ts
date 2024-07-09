@@ -8,11 +8,7 @@ import { UserModule } from '../user/user.module';
 @Module({
   imports: [
     UserModule,
-    JwtModule.register({
-      global: true,
-      secret: jwtConstants.secret,
-      signOptions: { expiresIn: '60s' },
-    }),
+    JwtModule.register({ global: true, secret: jwtConstants.secret }),
   ],
   controllers: [AuthController],
   providers: [AuthService],

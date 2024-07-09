@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 import { LoginAuthDto } from './dto/login-auth';
 import { AuthGuard } from './auth.guard';
 
-@Controller('auth')
+@Controller('/auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 

@@ -17,13 +17,20 @@ export class AuthService {
       throw new UnauthorizedException();
     }
 
-    const accessToken = await this.jwtService.signAsync({
-      userId: user.id,
-      username: user.username,
-    });
+    const [accessToken, refreshToken] = await Promise.all([
+      this.jwtService.signAsync(
+        { userId: user.id, username: user.username },
+        { expiresIn: '2h' },
+      ),
+      this.jwtService.signAsync(
+        { userId: user.id, username: user.username },
+        { expiresIn: '30 days' },
+      ),
+    ]);
 
     return {
       accessToken,
+      refreshToken,
       userInfo: user,
     };
   }
