@@ -36,8 +36,22 @@ export class UserService {
     return this.userRepository.find();
   }
 
-  findOne(id: string) {
+  findOneById(id: string) {
     return this.userRepository.findOneByOrFail({ id });
+  }
+
+  /**
+   * 根据用户名查找用户。
+   *
+   * 本函数旨在通过用户名查询用户信息。它利用了userRepository的findOneByOrFail方法，
+   * 这个方法会根据提供的条件（在这里是用户名）查找用户，并期望找到至少一个匹配的用户。
+   * 如果没有找到匹配的用户，该方法将抛出一个错误。
+   *
+   * @param username 用户名，用于查找用户的唯一标识。
+   * @returns 返回查找到的用户对象。
+   */
+  findOneByUsername(username: string) {
+    return this.userRepository.findOneByOrFail({ username });
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {

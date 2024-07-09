@@ -5,14 +5,14 @@
 
 ### 创建用户 - 途径：管理员新增 ##################################################################################################################
 # @name createInfo
+
 POST {{prefix}}
 Content-Type: application/json
 
 {
-    "email": "2957170000@qq.com", 
     "password": "e10adc3949ba59abbe56e057f20f883e",
     "nickname": "爱生活.涵",
-    "mobile": "15056076745",
+    "mobile": "18395596048",
     "sex": 2,
     "disabled": false
 }
@@ -21,14 +21,11 @@ Content-Type: application/json
 ### 更新用户 - 途径：管理员更新 ##################################################################################################################
 @userId = {{createInfo.response.body.$.data.id}}
 
-PUT {{prefix}}/{{userId}}
+PATCH  {{prefix}}/{{userId}}
 Content-Type: application/json
 
 {
-    "userName": "张涵",
-    "email": "2957172141@qq.com", 
-    "password": "e10adc3949ba59abbe56e057f20f883e",
-    "mobile": "18395596048",
+    "nickname": "张涵",
     "isEnable": true
 }
 

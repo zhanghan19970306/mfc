@@ -1,0 +1,22 @@
+@moduleUrl = http://localhost:3000/api
+@moduleName = auth
+@prefix = {{moduleUrl}}/{{moduleName}}
+
+
+### 登录 ##################################################################################################################
+
+POST {{prefix}}/login
+Content-Type: application/json
+
+{
+    "username": "18395596048", 
+    "password": "e10adc3949ba59abbe56e057f20f883e"
+}
+
+
+
+
+
+
+
+

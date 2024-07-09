@@ -30,20 +30,32 @@ export class UserController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    const userVo = await this.userService.findOne(id);
+  async findOneById(@Param('id') id: string) {
+    const userVo = await this.userService.findOneById(id);
+    return Result.success(userVo);
+  }
+
+  @Get('/user/:username')
+  async findOneByUsername(@Param('username') username: string) {
+    const userVo = await this.userService.findOneByUsername(username);
     return Result.success(userVo);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(id, updateUserDto);
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    const user = await this.userService.update(id, updateUserDto);
+
+    if (updateUserDto.returnEntity) {
+      return Result.success(user);
+    }
+
+    return Result.success();
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    const userVo = await this.userService.remove(id);
-    return userVo;
+    await this.userService.remove(id);
+    return Result.success();
   }
 
   /** 分页查询 */

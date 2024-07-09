@@ -1,5 +1,5 @@
 /** 性别 */
-export const enum SexEnum {
+export enum SexEnum {
   /** 未知 */
   Unknown = 0,
   /** 男 */
