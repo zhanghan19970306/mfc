@@ -1,10 +1,10 @@
 import { Entity, Column } from 'typeorm';
-import { BaseEntity } from '@/shared/entity';
+import { CustomBaseEntity } from '@/shared/entity';
 import { SexEnum } from '@/shared/enums';
 import { Exclude } from 'class-transformer';
 
 @Entity('sys_user')
-export class User extends BaseEntity {
+export class User extends CustomBaseEntity {
   @Column({ comment: '用户账号', default: '' })
   username: string;
 

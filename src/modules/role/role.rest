@@ -1,0 +1,53 @@
+@moduleUrl = http://localhost:3000/api
+@moduleName = role
+@prefix = {{moduleUrl}}/{{moduleName}}
+
+
+### 创建用户 - 途径：管理员新增 ####
+# @name createInfo
+POST  {{prefix}}
+Content-Type: application/json
+
+{
+    "name": "普通用户",
+    "code": "plain",
+    "desc": "平台的常规用户",
+    "color": "#2db7f5",
+    "disabled": false
+}
+
+
+### 修改角色 ####
+
+@id = {{createInfo.response.body.$.data.id}}
+
+PATCH  {{prefix}}/{{id}}
+Content-Type: application/json
+
+{
+    "name": "普通用户-修改",
+    "code": "plain-1",
+    "desc": "平台的常规用户",
+    "color": "#2db7f5",
+    "isEnable": false
+}
+
+### 获取角色信息 ####
+
+GET {{prefix}}/{{id}}
+
+### 获取角色列表 ####
+GET {{prefix}}
+
+### 修改角色状态  ####
+
+PATCH {{prefix}}/status/{{id}}
+Content-Type: application/json
+
+{
+    "disabled": true
+}
+
+### 删除角色信息 ###
+
+DELETE {{prefix}}/{{id}}
