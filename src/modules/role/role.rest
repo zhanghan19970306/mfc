@@ -29,7 +29,7 @@ Content-Type: application/json
     "code": "plain-1",
     "desc": "平台的常规用户",
     "color": "#2db7f5",
-    "isEnable": false
+    "disabled": true
 }
 
 ### 获取角色信息 ####
