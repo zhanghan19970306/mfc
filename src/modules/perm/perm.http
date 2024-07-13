@@ -1,0 +1,83 @@
+# 创建权限
+# 1. 不带parentId 
+# 2. 不带parentId 带children 
+# 3. 不带parentId 不带children TODO: children必须为[]  这个我还没有弄懂
+# 4. 带parentId 
+# 5. 带parentId 不带children  TODO: children必须为[]  这个我还没有弄懂
+# 6. 带parentId 带children 
+
+@moduleUrl = http://localhost:3000/api
+@moduleName = perm
+@prefix = {{moduleUrl}}/{{moduleName}}
+
+### 创建权限 ##################################################################################################################
+# @name createInfo
+POST {{prefix}}
+Content-Type: application/json
+
+{
+    // "parentId":"2ec6b49d-47d9-438d-b236-b37f7a4924c4",
+    "name": "1",
+    "code": "1",
+    "children": [
+        {
+            "name": "1-1",
+            "code": "1-1",
+            "children": []
+        }, {
+            "name": "1-2",
+            "code": "1-2",
+            "children": []
+        }
+    ]
+}
+
+### 编辑权限 ##################################################################################################################
+@id = {{createInfo.response.body.$.data.id}}
+@children1Id =  {{createInfo.response.body.$.data.children.0.id}}
+@children2Id =  {{createInfo.response.body.$.data.children.1.id}}
+
+Put {{prefix}}/{{id}}
+Content-Type: application/json
+
+{
+    // "parentId":"2ec6b49d-47d9-438d-b236-b37f7a4924c4",
+    "name": "1-修改",
+    "code": "1",
+    "children": [
+        {   
+            "id": "{{children1Id}}",
+            "name": "1-1-修改",
+            "code": "1-1",
+            "children": []
+        }, {
+            "id": "{{children2Id}}",
+            "name": "1-2-修改",
+            "code": "1-2",
+            "children": []
+        }, {
+            "name": "1-3-修改",
+            "code": "1-3",
+            "children": []
+        }
+    ]
+}
+
+### 删除权限 ##################################################################################################################
+
+@id = {{createInfo.response.body.$.data.id}}
+
+DELETE {{prefix}}/{{id}}
+
+### 获取树列表 ##################################################################################################################
+
+GET {{prefix}}/tree
+
+### 获取列表 ##################################################################################################################
+GET {{prefix}}
+
+### 获取单条权限消息 ##################################################################################################################
+@id = {{createInfo.response.body.$.data.id}}
+
+GET {{prefix}}/{{id}}
+
